@@ -15,6 +15,7 @@ data "aws_subnet_ids" "private" {
     name = "tag:subnet-type"
     values = ["private"]
   }
+  depends_on = [time_sleep.wait_10_seconds_private]
 }
 
 data "aws_subnet_ids" "public" {
@@ -23,6 +24,7 @@ data "aws_subnet_ids" "public" {
     name = "tag:subnet-type"
     values = ["public"]
   }
+  depends_on = [time_sleep.wait_10_seconds_private]
 }
 
 output "private_subnet_cidr_blocks" {
