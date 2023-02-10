@@ -2,11 +2,13 @@ data "aws_availability_zones" "available" {}
 
 data "aws_subnet_ids" "example" {
   vpc_id = aws_vpc.myvpc.id
+  depends_on = [time_sleep.wait_10_seconds_private]
 }
 
 output "subnet_cidr_blocks" {
   #value = [for s in data.aws_subnet.example : s.id]
   value = data.aws_subnet_ids.example.ids
+  
 }
 
 data "aws_subnet_ids" "private" {
